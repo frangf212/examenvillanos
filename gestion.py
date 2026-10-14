@@ -5,17 +5,20 @@ import logging
 import random
 from typing import Dict, Optional, Type
 
-from models import Heroe, Personaje, Villano
+from faker import Faker
+
+from models import Heroe, Personaje, Villano, Jugadores, CuerpoTecnico, Plantilla
 
 logger = logging.getLogger(__name__)
 
-
+fake=Faker()
 class Gestion:
     """Gestiona personajes y búsquedas usando diccionarios por identificador."""
 
     def __init__(self):
         self.heroes: Dict[int, Heroe] = {}
         self.villanos: Dict[int, Villano] = {}
+        self.plantilla={}
         self._siguiente_id = 1
 
     def _obtener_diccionario(self, tipo: str):
@@ -169,3 +172,38 @@ class Gestion:
         except Exception:
             logger.exception("Error al eliminar personaje.")
             raise
+
+
+
+
+    def crear_jugador(self,posicion:str,identificador:int):
+
+        try:
+            nombre= fake.first_name()
+            apellidos=fake.last_name()
+            identificador = self._siguiente_id
+            posicion=posicion.lower()
+            generar_jugador=Plantilla(nombre,apellidos,posicion,identificador)
+
+
+            return generar_jugador
+        except Exception:
+            logger.exception("Error al crear Heroe")
+
+
+
+    def crear_tecnico(self,rol:str,identificador:int):
+        try:
+            nombre = fake.first_name()
+            apellidos = fake.last_name()
+            identificador = self._siguiente_id
+            roles = rol.lower()
+            generar_jugador = Plantilla(nombre, apellidos,roles,identificador)
+
+            return generar_jugador
+
+        except Exception:
+            logger.exception("Error al crear Heroe")
+
+
+

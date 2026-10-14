@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from datetime import date
 import logging
 import random
+from operator import add
 
 logger = logging.getLogger(__name__)
 
@@ -112,3 +113,51 @@ class Villano(Personaje):
             "ausencias",
             "hablador",
         )
+
+class Plantilla():
+    def __init__(self,identificador:int,nombre:str,apellidos:str):
+        self.identificador = identificador
+        self.nombre = nombre.strip()
+        self.apellidos = apellidos.strip()
+        if not isinstance(identificador, int) or identificador <= 0:
+            raise ValueError("El identificador debe ser un entero positivo.")
+        if not nombre or not nombre.strip():
+            raise ValueError("El nombre no puede estar vacío.")
+        if not apellidos or not apellidos.strip():
+            raise ValueError("Los apellidos no pueden estar vacíos.")
+
+
+
+
+
+
+class Jugadores(Plantilla):
+    def __init__(self, identificador: int, nombre: str, apellidos: str):
+        super().__init__(identificador, nombre, apellidos)
+        self.posiciones =""
+
+
+
+
+
+
+
+
+class CuerpoTecnico(Plantilla):
+    def __init__(self, identificador: int, nombre: str, apellidos: str):
+        super().__init__(identificador,nombre,apellidos)
+        self.rol=""
+
+
+
+
+
+
+
+
+
+
+
+
+
+

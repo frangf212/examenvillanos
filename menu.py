@@ -64,15 +64,34 @@ class Menu:
                 print("4. Salir")
                 try:
                     opcionf=int(input("Elige una opcion:"))
-                    if opcionf == "4":
+
+
+                    if opcionf == 1:
+                        selc = int(input("¿Que miembro quieres agregar? 1.jugador o 2.agregar Cuerpo técnico"))
+                       # if selc == 1:
+                    #
+                    #     elif selc == 2:
+                    #
+                    #
+                    # 
+                    #
+                    #
+                    # elif opcionf == 2:
+                    #
+                    #
+                    # elif opcionf == 3:
+
+                    elif opcionf == 4:
                         logger.info("Aplicación cerrada por el usuario.")
                         print("Hasta luego.")
                         break
 
 
 
+
+
                 except (ValueError, TypeError) as e:
-                    logger.warning()
+                    logger.warning(f"Opción incorrecta {e}")
 
 
     def _crear(self, tipo: str) -> None:
@@ -119,3 +138,8 @@ class Menu:
             print("Personaje eliminado.")
         else:
             print("No existe un personaje con ese identificador.")
+
+
+
+
+
