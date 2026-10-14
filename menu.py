@@ -13,46 +13,67 @@ class Menu:
     def mostrar(self) -> None:
         """Muestra el menú principal y procesa las opciones."""
         while True:
-            print("\n=== HÉROES Y VILLANOS DEL VIRGEN ===")
-            print("1. Crear héroe")
-            print("2. Crear villano")
-            print("3. Listar personajes")
-            print("4. Buscar por atributo")
-            print("5. Emparejar héroe y villano")
-            print("6. Eliminar personaje")
-            print("0. Salir")
+            opcionmenu=int(input("1.Plantillas de futbol \n2.Heroes y Villanso \nElige una opcion:"))
 
-            try:
-                opcion = input("Elige una opción: ").strip()
-                if opcion == "1":
-                    self._crear("heroe")
-                elif opcion == "2":
-                    self._crear("villano")
-                elif opcion == "3":
-                    self._listar()
-                elif opcion == "4":
-                    self._buscar()
-                elif opcion == "5":
-                    self._emparejar()
-                elif opcion == "6":
-                    self._eliminar()
-                elif opcion == "0":
-                    logger.info("Aplicación cerrada por el usuario.")
-                    print("Hasta luego.")
+            if opcionmenu == 2:
+                print("\n=== HÉROES Y VILLANOS DEL VIRGEN ===")
+                print("1. Crear héroe")
+                print("2. Crear villano")
+                print("3. Listar personajes")
+                print("4. Buscar por atributo")
+                print("5. Emparejar héroe y villano")
+                print("6. Eliminar personaje")
+                print("0. Salir")
+
+                try:
+                    opcion = input("Elige una opción: ").strip()
+                    if opcion == "1":
+                        self._crear("heroe")
+                    elif opcion == "2":
+                        self._crear("villano")
+                    elif opcion == "3":
+                        self._listar()
+                    elif opcion == "4":
+                        self._buscar()
+                    elif opcion == "5":
+                        self._emparejar()
+                    elif opcion == "6":
+                        self._eliminar()
+                    elif opcion == "0":
+                        logger.info("Aplicación cerrada por el usuario.")
+                        print("Hasta luego.")
+                        break
+                    else:
+                        print("Opción no válida.")
+                        logger.warning("Opción de menú no válida: %s", opcion)
+                except (ValueError, TypeError) as exc:
+                    print(f"Error: {exc}")
+                    logger.warning("Entrada no válida: %s", exc)
+                except (KeyboardInterrupt, EOFError):
+                    logger.info("Salida solicitada desde teclado.")
+                    print("\nAplicación finalizada.")
                     break
-                else:
-                    print("Opción no válida.")
-                    logger.warning("Opción de menú no válida: %s", opcion)
-            except (ValueError, TypeError) as exc:
-                print(f"Error: {exc}")
-                logger.warning("Entrada no válida: %s", exc)
-            except (KeyboardInterrupt, EOFError):
-                logger.info("Salida solicitada desde teclado.")
-                print("\nAplicación finalizada.")
-                break
-            except Exception:
-                logger.exception("Error no controlado en el menú.")
-                print("Se ha producido un error. Consulta el archivo aplicacion.log.")
+                except Exception:
+                    logger.exception("Error no controlado en el menú.")
+                    print("Se ha producido un error. Consulta el archivo aplicacion.log.")
+            elif opcionmenu == 1:
+                print("\n=== PANTILLAS DE FÚTBOL===")
+                print("1. Agregar miembro")
+                print("2. Listar Plantilla")
+                print("3. Crear plantilla")
+                print("4. Salir")
+                try:
+                    opcionf=int(input("Elige una opcion:"))
+                    if opcionf == "4":
+                        logger.info("Aplicación cerrada por el usuario.")
+                        print("Hasta luego.")
+                        break
+
+
+
+                except (ValueError, TypeError) as e:
+                    logger.warning()
+
 
     def _crear(self, tipo: str) -> None:
         nombre = input("Nombre: ").strip()
